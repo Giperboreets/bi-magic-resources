@@ -1,0 +1,74 @@
+body {
+  display: flex; /* Для вертикального выравнивания */
+  font-family: Arial;
+  font-weight: normal;
+  background-color: #ADD8E6; /* Голубой цвет */  
+}
+.table {  
+  display: inline-table; 
+  background-color: #ADD8E6; /* Фоновый цвет */
+  color: rgb(68, 0, 255);
+  border: 2px solid #ADD8E6;  
+  border-collapse: separate;
+  border-spacing: 3px;
+  table-layout: auto;
+  width: 100%;
+  height: 40vh; /* 80vh Использование 100% высоты области просмотра */
+  /*flex-basis: 10vh; /* Базовый размер элемента */
+  //flex-grow: 1; /* Позволяет элементу расти */
+  //flex-shrink: 1; /* Позволяет элементу сжиматься */
+  flex-direction: column; /* Вертикальное выравнивание */
+  justify-content: center; /* Горизонтальное выравнивание */
+  //align-items: center; /* Вертикальное выравнивание */
+  padding: 2%; /* Отступы для содержимого */
+  box-sizing: border-box; /* Учет отступов и полей */
+  overflow-y: auto; /* Полоса прокрутки, если содержимое не помещается */  
+}
+.bcursor_1{
+  cursor: pointer;
+}
+.bcursor_2{
+  cursor: wait;
+}
+
+.cursor_1{
+  cursor: auto;
+}
+.cursor_2{
+  cursor: wait;
+}
+
+.main_style {
+    /*font-size: clamp(1rem, 1vh, 2rem); /* Динамический размер шрифта */
+    font-style: italic;    
+    font-size: 8; /* размер шрифта */
+  };
+  .button{
+    background-color: #3085d0; /* Фоновый цвет */
+    //padding: 1px;                /* Внутренний отступ */
+    border: 2px solid #3085d0; /* Граница */
+    border-radius: 0.5em;        /* Закругленные углы */
+    font-size: 90%;
+    font-style: normal;
+    color: rgb(10, 3, 31);
+    width: 7em; 
+  }
+  td {
+    vertical-align: top;
+  }
+  h1 {
+    font-size: 100%; 
+    text-align: center;
+  }
+  .error{
+    border-color: #f32a07; 
+    color:#f32a07
+  }
+  .success{
+    border-color: #049907; 
+    color:#025205
+  }
+  .info{
+    font-size: 80%;
+  }
+
