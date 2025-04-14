@@ -10,7 +10,7 @@ function CustomInterface_1(props) {
   const [msg, setMsg] = React.useState('');     // Состояние сообщения о рез-те загрузки
   const [msgTp, setMsgTp]= React.useState('');  // Состояние типа отображения рез-та загрузки
   const [cursor,setCursor]= React.useState('cursor_1');     // Состояние типа курсора
-  const [bcursor,setBCursor]= React.useState('bcursor_1');  // Состояние типа курсора для кнопок
+  const [tvisible,setTvisible]= React.useState('tshow');  // Состояние типа курсора для кнопок
 
   // ф-я по обработке события выбора эл-та из списка листбокса
   const fn_onSelChange = (e) => {
@@ -70,7 +70,7 @@ function CustomInterface_1(props) {
                 }; 
 
     setCursor('cursor_2');    
-    setBCursor('bcursor_2');          
+    setTvisible('thide');          
     fetch(url, optn)
         .then(res=>{
             return res.json();
@@ -92,8 +92,8 @@ function CustomInterface_1(props) {
   //ф-я показа окна рез-та
   const fn_ShowMsg=()=>{
     setCursor('cursor_1');
-    setBCursor('bcursor_1'); 
-    dialog.showModal()
+    setTvisible('tshow'); 
+    dialog.showModal();
   }
 
   // ф-я обработки результата отправки
@@ -132,9 +132,9 @@ function CustomInterface_1(props) {
     }  
   
   return (
-      <div className="main_style">
+      <div className='main_style'>
         <table className={`table ${cursor}`}>
-          <tr>
+          <tr className={tvisible}>
             <td>
               <ListBox sel_Id="1" arr={Arr_1} name="Список 1" selected={sel_1} onSelChange={fn_onSelChange}/>
             </td>  
@@ -142,12 +142,12 @@ function CustomInterface_1(props) {
               <ListBox sel_Id="2" arr={Arr_2} name="Список 2" selected={sel_2} onSelChange={fn_onSelChange}/>
             </td>                          
           </tr>
-          <tr>
+          <tr className={tvisible}>
             <td>
-              <SelectFile extention=".zip" onSelect = {fn_onFileSel} bcursor={bcursor}/>
+              <SelectFile extention=".zip" onSelect = {fn_onFileSel}/>
             </td>
             <td>
-              <SendFile onClick={fn_sendFile} bcursor={bcursor}/>
+              <SendFile onClick={fn_sendFile}/>
             </td>
           </tr>
         </table>
@@ -174,27 +174,34 @@ const Arr_2 = [
 // Компонент вывода листбокса
 function ListBox(props) {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [msg, setMsg] = useState('Выберите zip файл');
+  const [msg, setMsg] = useState('Выберите элемент из списка');
   const [clr, setClr] = useState('gray');  
 
-
-  function fn_onChange(){
-
+  const fn_onChange=(event)=>{  
+      const itm = event.target.value;  
+      if (!itm){
+        setMsg('Элемент не выбран !');
+        setClr('red');     
+      }else{      
+        setMsg('Выбран: ' + itm);
+        setClr('green');
+      }
+      setSelectedItem(itm);
+      props.onSelChange(event);    
   }
-
 
   let Arr = props.arr;
   return (
     <div>
-      <p>{props.name}:</p>
-      <select id={props.sel_Id} value={props.selected} onChange={props.onSelChange}> 
+      <p className='info'>{props.name}:</p>
+      <select id={props.sel_Id} value={selectedItem} onChange={fn_onChange} style={{cursor: 'pointer'}}> 
         {Arr.map((itm, index) => (
           <option key={index} value={itm.value}>
             {itm.label}
           </option>
         ))}
       </select>
-      <p className='info'>{msg}</p>
+      <p className='info' style={{color: clr}}>{msg}</p>
     </div>
   );
 }

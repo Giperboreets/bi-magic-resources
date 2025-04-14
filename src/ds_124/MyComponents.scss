@@ -9,7 +9,7 @@ body {
   background-color: var(--bg_color); /* Голубой цвет */  
 }
 .table {  
-  display: inline-table; 
+  //display: inline-table; 
   background-color: var(--bg_color); /* Фоновый цвет */
   color: rgb(68, 0, 255);
   border: 2px solid #ADD8E6;  
@@ -18,19 +18,20 @@ body {
   table-layout: auto;
   width: 100%;
   height: 40vh; /* 80vh Использование 100% высоты области просмотра */
-  flex-direction: column; /* Вертикальное выравнивание */
+  //flex-direction: column; /* Вертикальное выравнивание */
   justify-content: center; /* Горизонтальное выравнивание */
   //align-items: center; /* Вертикальное выравнивание */
   padding: 2%; /* Отступы для содержимого */
   box-sizing: border-box; /* Учет отступов и полей */
   overflow-y: auto; /* Полоса прокрутки, если содержимое не помещается */  
 }
-.bcursor_1{
-  cursor: pointer;
+
+.tshow{
+  display: table-row;
 }
-.bcursor_2{
-  cursor: wait;
-}
+.thide{
+  display: none;
+ }
 
 .cursor_1{
   cursor: auto;
@@ -40,6 +41,7 @@ body {
 }
 
 .main_style {
+    background-color: var(--bg_color);
     /*font-size: clamp(1rem, 1vh, 2rem); /* Динамический размер шрифта */
     font-style: italic;    
     font-size: 8; /* размер шрифта */
@@ -53,6 +55,7 @@ body {
     font-style: normal;
     color: rgb(10, 3, 31);
     width: 7em; 
+    cursor: pointer;
   }
   td {
     vertical-align: top;
