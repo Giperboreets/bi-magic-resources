@@ -173,6 +173,16 @@ const Arr_2 = [
 
 // Компонент вывода листбокса
 function ListBox(props) {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [msg, setMsg] = useState('Выберите zip файл');
+  const [clr, setClr] = useState('gray');  
+
+
+  function fn_onChange(){
+
+  }
+
+
   let Arr = props.arr;
   return (
     <div>
@@ -184,7 +194,7 @@ function ListBox(props) {
           </option>
         ))}
       </select>
-      <p className='info'>Выбрано: {props.selected}</p>
+      <p className='info'>{msg}</p>
     </div>
   );
 }
